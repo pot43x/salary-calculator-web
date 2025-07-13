@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Salary App</title>
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+
+    <form method="POST" action="/">
+        <label for="employee_code">Employee Code:</label><br>
+        <input type="text" id="employee_code" name="employee_code" required><br><br>
+
+        <label for="rate_code">Rate Code:</label><br>
+        <input type="text" id="rate_code" name="rate_code" required><br><br>
+
+        <label for="hours_worked">Hours worked:</label><br>
+        <input type="number" step="0.01" id="hours_worked" name="hours_worked" required><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if result %}
+        <h2>--- Salary ---</h2>
+        <p><strong>Name:</strong> {{ result.name }}</p>
+        <p><strong>Code:</strong> {{ result.employee_code }}</p>
+        <p><strong>Salary:</strong> {{ "${:,.2f}".format(result.salary) }}</p>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
